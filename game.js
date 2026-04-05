@@ -31,6 +31,7 @@ class NumberMagicGame {
         this.chapterGrid = document.getElementById('chapter-grid');
         this.chapterActions = document.getElementById('chapter-actions');
         this.btnRepeatChapter = document.getElementById('btn-repeat-chapter');
+        this.btnSelectChapter = document.getElementById('btn-select-chapter');
         this.btnNextChapter = document.getElementById('btn-next-chapter');
 
         this.themes = ['forest', 'ocean', 'night', 'sky'];
@@ -72,6 +73,10 @@ class NumberMagicGame {
             this.chapterOverlayVisible = false;
             window.audioManager.playNarration(`narrator_repeat_chapter_${chapter}`);
             this.startGame(chapter);
+        });
+
+        this.btnSelectChapter.addEventListener('click', () => {
+            this.resetToStartState();
         });
 
         this.btnNextChapter.addEventListener('click', () => {
@@ -159,6 +164,7 @@ class NumberMagicGame {
         this.chapterDesc.textContent = '每 5 个数字是一大关，挑一个开始吧。';
         this.chapterGrid.classList.remove('hidden');
         this.chapterActions.classList.add('hidden');
+        this.btnNextChapter.classList.remove('hidden');
         this.btnNextChapter.textContent = '继续下一关';
         this.renderChapterButtons();
         this.chapterOverlay.classList.remove('hidden');
@@ -177,12 +183,13 @@ class NumberMagicGame {
         this.chapterTitle.textContent = isFinalChapter ? '全部完成啦' : `${meta.title} 完成啦`;
         this.chapterDesc.textContent = isFinalChapter
             ? '可以重玩最后一关，或者回到选关页面重新开始。'
-            : '你可以重玩本关，或者继续下一关。';
+            : '你可以重玩本关、继续下一关，或者返回选关。';
         this.chapterGrid.classList.add('hidden');
         this.chapterActions.classList.remove('hidden');
         this.btnRepeatChapter.dataset.chapter = String(chapter);
         this.btnNextChapter.dataset.chapter = String(chapter);
-        this.btnNextChapter.textContent = isFinalChapter ? '回到选关' : '继续下一关';
+        this.btnNextChapter.classList.toggle('hidden', isFinalChapter);
+        this.btnNextChapter.textContent = '继续下一关';
         this.chapterOverlay.classList.remove('hidden');
 
         if (isFinalChapter) {
