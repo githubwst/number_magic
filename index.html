@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>数字魔法</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body class="theme-forest">
+    <div class="game-container">
+        <!-- 动态场景背景 -->
+        <div id="scene-bg">
+            <!-- 初始森林主题背景元素 (通过 JS 动态切换) -->
+        </div>
+
+        <div class="header">
+            <h1 class="title">数字魔法</h1>
+            <div class="level-indicator">第 <span id="current-level">1</span> 关</div>
+        </div>
+        
+        <div id="play-area" class="play-area">
+            <!-- 数字物品将在这里生成 -->
+        </div>
+        
+        <!-- 认知奖励全屏蒙层 -->
+        <div id="reward-overlay" class="reward-overlay hidden">
+            <div class="reward-container">
+                <div id="reward-content" class="reward-content"></div>
+                <button id="btn-restart" class="btn-primary hidden">再玩一次</button>
+            </div>
+        </div>
+
+        <!-- 关卡选择 / 大关结算 -->
+        <div id="chapter-overlay" class="chapter-overlay hidden">
+            <div class="chapter-card">
+                <div class="chapter-badge" id="chapter-badge">数字魔法</div>
+                <h2 class="chapter-title" id="chapter-title">选择关卡</h2>
+                <p class="chapter-desc" id="chapter-desc">每 5 个数字是一大关，挑一个开始吧。</p>
+                <div id="chapter-grid" class="chapter-grid"></div>
+                <div id="chapter-actions" class="chapter-actions hidden">
+                    <button id="btn-repeat-chapter" class="btn-primary btn-secondary">重玩本关</button>
+                    <button id="btn-next-chapter" class="btn-primary">继续下一关</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 魔法星轨层 (Canvas) -->
+    <canvas id="magic-trail"></canvas>
+
+    <!-- 声音控制 (提示宝宝开启声音) -->
+    <div id="sound-prompt" class="sound-prompt">
+      <h1>🎈 点击屏幕开启魔法声音 🎈</h1>
+    </div>
+
+    <!-- 错误提示 -->
+    <div id="error-toast" class="error-toast hidden">不对哦，再找找！</div>
+
+    <script src="svg-assets.js"></script>
+    <script src="audio.js"></script>
+    <script src="effects.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
