@@ -288,20 +288,6 @@ class NumberMagicGame {
         this.currentLevel = this.getChapterStartLevel(chapter);
         this.resetGameSurface();
         this.generateBatch();
-
-        const hintMap = {
-            1: 'narrator_hint_find_one',
-            6: 'narrator_hint_find_6',
-            11: 'narrator_hint_find_11',
-            16: 'narrator_hint_find_16'
-        };
-        const startHint = () => {
-            const key = hintMap[this.currentLevel];
-            if (key) {
-                window.audioManager.playNarration(key);
-            }
-        };
-        setTimeout(startHint, 300);
     }
 
     setTheme(themeName) {
