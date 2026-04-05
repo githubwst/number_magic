@@ -2,3 +2,4 @@
 sounds/movie/
 .DS_Store
 log/
+.vercel
